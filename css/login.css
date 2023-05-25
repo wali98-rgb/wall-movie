@@ -1,0 +1,62 @@
+/* Login */
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login .login-section {
+    padding: 2rem 3%;
+    display: block;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--primary);
+    border-radius: 1rem;
+}
+
+.login .login-section .login-title {
+    padding: 0 0 1rem;
+    color: var(--secondary);
+    font-size: 3rem;
+    font-weight: 600;
+    border-bottom: 4px solid var(--secondary);
+}
+
+.login .login-section .login-title span {
+    color: var(--bg);
+}
+
+.login .login-section .login-form {
+    display: block;
+    padding: 1rem 0 0;
+}
+
+.login .login-section .login-form .form-input {
+    margin: .5rem 0;
+    padding: .5rem 1rem;
+    text-align: center;
+    border-radius: 1rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--bg);
+}
+
+.login .login-section .login-form .form-submit {
+    margin: 1.5rem 0 0;
+    padding: .7rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border-radius: 1rem;
+    background-color: var(--bg);
+    color: var(--secondary);
+}
+
+.login .login-section .login-form .form-regis {
+    padding: .5rem .7rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    background-color: var(--secondary);
+    color: var(--bg);
+    border-radius: 1rem;
+}
