@@ -10,7 +10,7 @@
     padding: 0;
     outline: none;
     text-decoration: none;
-    border: none;
+    /* border: none; */
     list-style-type: none;
 }
 
@@ -19,7 +19,6 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-admin);
     color: var(--secondary-admin);
-    height: 200vh;
 }
 
 /* Navbar */
@@ -81,7 +80,6 @@ body {
 .sidebar-admin .sidebar-admin-content .sidebar-admin-logo {
     padding: 0 0 .5rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid var(--primary-admin);
 }
@@ -94,7 +92,6 @@ body {
     padding: 0 0 0 1rem;
     font-size: 1.5rem;
     font-weight: 600;
-    font-style: italic;
     color: var(--bg-admin);
 }
 
@@ -123,7 +120,7 @@ body {
 }
 
 .sidebar-admin .sidebar-admin-content .menu-admin li a:hover {
-    background-color: var(--bg-admin);
+    background-color: var(--shadow-admin);
     color: var(--primary-admin);
     font-weight: 600;
 }
@@ -157,6 +154,10 @@ body {
 }
 
 .section-admin .section-admin-content .section-btn-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 7rem;
     background-color: #c4360b;
 }
 
@@ -166,36 +167,47 @@ body {
 
 .section-admin .section-admin-content .section-content {
     margin: 2rem 0 0;
-    padding: 1rem 2%;
+    padding: 1rem;
     border-radius: 1rem;
     background-color: var(--shadow-admin);
 }
 
+.section-admin .section-admin-content .section-user {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .section-admin .section-admin-content .section-content .section-table {
-    color: var(--primary-admin);
-    font-size: 1.3rem;
     width: 100%;
     text-align: center;
+    font-size: 1.4rem;
 }
 
-.section-admin .section-admin-content .section-content .section-table .row-table-head {
-    padding: 0 0 1rem;
-    border-bottom: 2px solid var(--primary-admin);
+.section-admin .section-admin-content .section-content .section-table tr td {
+    padding: .4rem;
 }
 
-.section-admin .section-admin-content .section-content .section-table .row-table-data {
-    padding: 1rem 0;
+.section-admin .section-admin-content .section-content .section-table tr th {
+    padding: .4rem 0;
+    border-top: 1px solid var(--primary-admin);
+    border-bottom: 1px solid var(--primary-admin);
+}
+
+.section-admin .section-admin-content .section-content .section-card {
+    padding: 1rem;
+    background-color: #ad6f5c;
+    border-radius: 1rem;
+}
+
+.section-admin .section-admin-content .section-content .section-card .section-card-body {
+    color: var(--primary-admin);
 }
 
 /* .section-admin .section-admin-content .section-content .section-table .row-table-data {
     border-left: 2px solid var(--primary-admin);
     border-right: 2px solid var(--primary-admin);
 } */
-
-.section-admin .section-admin-content .section-content .section-table .row-table-foot {
-    padding: 1rem 0 0;
-    border-top: 2px solid var(--primary-admin);
-}
 
 .section-admin .section-admin-content .section-content .form-section {
     color: var(--primary-admin);
@@ -208,6 +220,11 @@ body {
     text-align: left;
 }
 
+.section-admin .section-admin-content .section-content .form-section table tr {
+    display: flex;
+    align-items: center;
+}
+
 .section-admin .section-admin-content .section-content .form-section table input {
     padding: 1rem 1%;
     width: 100%;
@@ -218,7 +235,13 @@ body {
 
 .section-admin .section-admin-content .section-content .form-section table .form-submit {
     margin: 1rem 0 0;
-    width: 50%;
+    padding: .5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    font-size: 1.5rem;
+    border-radius: 1rem;
     background-color: var(--primary-admin);
     color: var(--bg-admin);
 }

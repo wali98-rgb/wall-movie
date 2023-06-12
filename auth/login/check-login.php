@@ -23,8 +23,14 @@
             $_SESSION['level'] = 'user';
             $_SESSION['status'] = 'login';
 
-            header('location:../../index.php');
-        } 
+            header('location:../../index.php?pesan=login');
+        } else if ($_SESSION['level'] == 'writer') {
+            $_SESSION['username'] = $username;
+            $_SESSION['level'] = 'writer';
+            $_SESSION['status'] = 'login';
+
+            header('location:../../index.php?pesan=login');
+        }
     } else {
         header('location:login.php?pesan=gagal');
     }

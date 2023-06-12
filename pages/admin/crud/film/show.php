@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="../../../../css/admin-css/layout.css">
+    <link rel="stylesheet" href="../../css/layout.css">
 
     <!-- Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +36,11 @@
         <main class="sidebar-admin-content">
             <a class="sidebar-admin-logo" href="../../pages/admin/home.php">
                 <img src="../../../../img/logo.png" alt="Logo-Admin-Wall-Movie">
-                <span>Wall Movie</span>
+                <span style="display: flex; align-items: center;">
+                    <i data-feather="user"></i>
+                    &nbsp;
+                    <label for=""><?php echo $_SESSION['username']; ?></label>
+                </span>
             </a>
             <ul class="menu-admin">
                 <li><a href="../../../../pages/admin/home.php"><i data-feather="home"></i> <span>Dashboard</span></a></li>

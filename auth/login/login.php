@@ -57,7 +57,7 @@
         <div class="login-section">
             <h1 class="login-title">Login <span>| Page</span></h1>
             <form class="login-form" action="check-login.php" method="POST">
-                <input class="form-input" type="text" name="username" id="" placeholder="Masukkan Username" required> <br>
+                <input class="form-input" type="text" name="username" id="" placeholder="Masukkan Username" autofocus required> <br>
                 <input class="form-input" type="password" name="password" id="" placeholder="Masukkan Password" required> <br>
                 <input class="form-submit" type="submit" name="login" id="" value="Sign In">
                 <a href="../register/register.php" class="form-regis">Sign Out</a>

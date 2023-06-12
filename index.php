@@ -27,13 +27,70 @@
 </head>
 
 <body>
+    <?php
+        session_start();
+        if (isset($_GET['pesan'])) {
+            if ($_GET['pesan'] == "gagal") {
+                echo "
+                    <script>
+                        alert('Login Gagal! Username atau Password salah!');
+                    </script>
+                ";
+            } else if (isset($_SESSION['status'])) {
+                $log_in = $_SESSION['username'];
+                if ($_GET['pesan'] == "login") {
+                    echo "
+                        <script>
+                            alert('Selamat Datang $log_in');
+                        </script>
+                    ";
+                }
+            } else if ($_GET['pesan'] == "logout") {
+                echo "
+                    <script>
+                        alert('Kamu berhasil Logout');
+                    </script>
+                ";
+            } else if ($_GET['pesan'] == "belum_login") {
+                echo "
+                    <script>
+                        alert('Anda harus login dulu');
+                    </script>
+                ";
+            }
+        }
+    ?>
+    
     <!-- Navbar Start -->
     <nav class="navbar">
         <a href="" class="navbar-img"><img src="img/logo.png" alt="logo" width="50px"></a>
         <h1 class="navbar-name">Wall <span>Movie</span></h1>
-        <div class="navbar-ex">
-            <!-- <a href="#" id="search"><i data-feather="search"></i></a> -->
-            <a href="#" onclick="aktif()" id="hamburger"><i data-feather="menu"></i></a>
+        <div class="navbar-ex" style="display: flex; align-items: center;"  >
+            <button style="background: none; color: #C0EEF2" type="button" id="search"><i data-feather="search"></i></button>
+            &nbsp;&nbsp;
+
+            <!-- Check Login Start -->
+            <?php
+                if (isset($_SESSION['status'])) {
+                    if ($_SESSION['status'] == "login" && $_SESSION['level'] == "user" || $_SESSION['level'] == "writer") {
+            ?>
+            <p style="display: flex; align-items: center;">
+                <i data-feather="user"></i>
+                <label for=""><?php echo $_SESSION['username']; ?></label>
+            </p>
+            <?php
+                    }
+                } else {
+            ?>
+            <a style="display: flex; align-items: center; font-size: 1rem; text-transform: uppercase;" id="login" href="auth/login/login.php"><label for="login">Login</label> &nbsp; <i data-feather="log-in"></i></a>
+            <?php
+                }
+            ?>
+            <!-- Check Login End -->
+
+            &nbsp;&nbsp;
+            
+            <button style="background: none; color: #C0EEF2" type="button" onclick="aktif()" id="hamburger"><i data-feather="menu"></i></button>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -47,7 +104,22 @@
             <li><a href="pages/public/action/film.php"><i data-feather="film"></i> <span>&nbsp; Film</span></a></li>
             <li><a href="#"><i data-feather="disc"></i> <span>&nbsp; Category</span></a></li>
             <li><a href="#"><i data-feather="alert-circle"></i> <span>&nbsp; About Us</span></a></li>
-            <li><a href="auth/logout.php"><i data-feather="log-out"></i> <span>&nbsp; Log Out</span></a></li>
+            <!-- Check Login Start -->
+            <?php
+                if (isset($_SESSION['status'])) {
+                    if ($_SESSION['status'] == "login" && $_SESSION['level'] == "user" || $_SESSION['level'] == "writer") {
+            ?>
+            <li>
+                <a href="auth/logout.php">
+                    <i data-feather="log-out"></i>
+                    <span>&nbsp; Log Out</span>
+                </a>
+            </li>
+            <?php
+                    }
+                }
+            ?>
+            <!-- Check Login End -->
         </ul>
     </aside>
     <!-- Sidebar End -->
@@ -61,14 +133,6 @@
         </main>
     </section>
     <!-- Hero End -->
-    
-    <!-- Cek Login -->
-    <?php
-        session_start();
-        if ($_SESSION['status']!="login") {
-            header('location:index.php');
-        }
-    ?>
 
     <!-- Reccommend Start -->
     <section class="recom" id="recom">

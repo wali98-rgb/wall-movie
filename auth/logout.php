@@ -4,5 +4,5 @@
     // Menghapus Session
     session_destroy();
 
-    header('location:login/login.php?pesan=logout')
+    header('location:../index.php?pesan=logout')
 ?>

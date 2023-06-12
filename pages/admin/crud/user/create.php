@@ -17,9 +17,9 @@
     <script src="https://unpkg.com/feather-icons"></script>
 
     <!-- Icon App -->
+    <link rel="icon" href="">
     
-
-    <title>Create Film | Wall Movie</title>
+    <title>Users | Wall Movie</title>
 </head>
 <body>
     <!-- Check Login Start -->
@@ -33,9 +33,12 @@
     ?>
     <!-- Check Login End -->
     
+    <!-- Loader Start -->
+    <!-- Loader End -->
+    
     <!-- Navbar Start -->
     <?php
-        include('../../../../partials/admin/navbar.php');
+        include('../../../../partials/admin/navbar.php')
     ?>
     <!-- Navbar End -->
 
@@ -51,60 +54,29 @@
                 </span>
             </a>
             <ul class="menu-admin">
-                <li><a href="../../home.php"><i data-feather="home"></i> <span>Dashboard</span></a></li>
-                <li><a style="background-color: #F0F2B6; color: #224B0C; font-weight: 600;" href="film.php"><i data-feather="film"></i> <span>Film</span></a></li>
+                <li><a href="../../../../pages/admin/home.php"><i data-feather="home"></i> <span>Dashboard</span></a></li>
+                <li><a href="../film/film.php"><i data-feather="film"></i> <span>Film</span></a></li>
                 <li><a href="../category/category.php"><i data-feather="disc"></i> <span>Category</span></a></li>
                 <li><a href="../recommended/recommended.php"><i data-feather="check-square"></i> <span>Recommended</span></a></li>
-                <li><a href="../user/user.php"><i data-feather="user"></i> <span>User</span></a></li>
+                <li><a style="background-color: #F0F2B6; color: #224B0C; font-weight: 600;" href="user.php"><i data-feather="user"></i> <span>User</span></a></li>
                 <li><a href="../../../../auth/logout.php"><i data-feather="log-out"></i> <span>Log Out</span></a></li>
             </ul>
         </main>
     </aside>
     <!-- Sidebar End -->
 
-    <!-- Create Film Start -->
+    <!-- Section Start -->
     <section class="section-admin">
         <main class="section-admin-content">
-            <h1 class="section-title">Create Film</h1>
-            <a class="section-btn-back" href="film.php"><i data-feather="arrow-left-circle"></i> <label for="">&nbsp; Back</label></a>
+            <h1 class="section-title">Users Page</h1>
+            <a class="section-btn-back" href="user.php"><i data-feather="arrow-left-circle"></i> <label for="">&nbsp; Back</label></a>
             <div class="section-content">
-                <form action="create-action.php" method="POST" class="form-section" enctype="multipart/form-data">
+                <form action="create-action.php" method="POST" class="form-section">
                     <table class="table">
                         <tr>
-                            <th width="20%"><label for="">Cover</label></th>
+                            <th width="20%"><label for="">Nama Kategori :</label></th>
                             <td width="80%">
-                                <input type="file" name="cover" id="" placeholder="Masukkan Cover Film" required> <br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="20%"><label for="">Judul Film</label></th>
-                            <td width="80%">
-                                <input type="text" name="title_film" id="" placeholder="Masukkan Judul Film" required> <br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="20%"><label for="">Deskripsi Film</label></th>
-                            <td width="80%">
-                                <textarea name="desc_film" id="" cols="30" rows="10" required placeholder="Masukkan Deskripsi Film"></textarea> <br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="20%"><label for="">Kategori Film</label></th>
-                            <td width="80%">
-                                <select name="id_category" id="">
-                                    <option value="">Pilih Kategori</option>
-                                    <?php
-                                        include '../../../../connection/koneksi.php';
-
-                                        $data = mysqli_query($con, "select * from category");
-                                        // foreach ($data as $d) {
-                                        while ($d = mysqli_fetch_array($data)) {
-                                            ?>
-                                                <option value="<?php echo $d['id_category']; ?>"><?php echo $d['nama_category']; ?></option>
-                                            <?php
-                                        }
-                                    ?>
-                                </select>
+                                <input style="border: none;" type="text" name="name_category" id="" placeholder="Masukkan Nama Kategori" required> <br>
                             </td>
                         </tr>
                         <tr>
@@ -118,8 +90,20 @@
             </div>
         </main>
     </section>
-    <!-- Create Film End -->
+    <!-- Section End -->
 
+    <?php
+        if (isset($_GET['pesan'])) {
+            if ($_GET['pesan'] == "berhasil") {
+                echo "Data berhasil ditambahkan!";
+            }
+        }
+    ?>
+
+    <!-- Footer Start -->
+    <!-- Footer End -->
+
+    <!-- Feather Icon -->
     <script>
         feather.replace()
     </script>

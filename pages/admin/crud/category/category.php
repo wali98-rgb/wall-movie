@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="../../../../css/admin-css/layout.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
 
     <!-- Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +22,17 @@
     <title>Category Admin | Wall Movie</title>
 </head>
 <body>
+    <!-- Check Login Start -->
+    <?php
+        session_start();
+        if ($_SESSION['status'] != "login") {
+            header('location:../../auth/login/login.php?pesan=belum_login');
+        } else if ($_SESSION['status'] == "login" && $_SESSION['level'] == "user" || $_SESSION['level'] == "jurnal") {
+            header('location:../../index.php');
+        }
+    ?>
+    <!-- Check Login End -->
+    
     <!-- Loader Start -->
     <!-- Loader End -->
     
@@ -36,12 +47,16 @@
         <main class="sidebar-admin-content">
             <a class="sidebar-admin-logo" href="../../pages/admin/home.php">
                 <img src="../../../../img/logo.png" alt="Logo-Admin-Wall-Movie">
-                <span>Wall Movie</span>
+                <span style="display: flex; align-items: center;">
+                    <i data-feather="user"></i>
+                    &nbsp;
+                    <label for=""><?php echo $_SESSION['username']; ?></label>
+                </span>
             </a>
             <ul class="menu-admin">
                 <li><a href="../../../../pages/admin/home.php"><i data-feather="home"></i> <span>Dashboard</span></a></li>
                 <li><a href="../../../../pages/admin/crud/film/film.php"><i data-feather="film"></i> <span>Film</span></a></li>
-                <li><a href="category.php"><i data-feather="disc"></i> <span>Category</span></a></li>
+                <li><a style="background-color: #F0F2B6; color: #224B0C; font-weight: 600;" href="category.php"><i data-feather="disc"></i> <span>Category</span></a></li>
                 <li><a href="../recommended/recommended.php"><i data-feather="check-square"></i> <span>Recommended</span></a></li>
                 <li><a href="../user/user.php"><i data-feather="user"></i> <span>User</span></a></li>
                 <li><a href="../../../../auth/logout.php"><i data-feather="log-out"></i> <span>Log Out</span></a></li>
@@ -54,27 +69,27 @@
     <section class="section-admin">
         <main class="section-admin-content">
             <h1 class="section-title">Category Page</h1>
-            <a href="create.php"><i data-feather="plus"></i> Create Category</a>
+            <a style="display: flex; align-items: center; width: 16.5rem; text-transform: uppercase; justify-content: center" href="create.php"><i data-feather="plus-circle"></i> &nbsp; <label for="">Create Category</label></a>
             <div class="section-content">
                 <table class="section-table">
                     <tr>
                         <th class="row-table-head">#</th>
                         <th class="row-table-head">Nama Kategory</th>
-                        <th class="row-table-head">Action</th>
+                        <th width="250px" class="row-table-head">Action</th>
                     </tr>
                     <?php 
                         include '../../../../connection/koneksi.php';
                         $no = 1;
-                        $data = mysqli_query($con, "select * from category");
+                        $data = mysqli_query($con, "select * from category order by nama_category asc");
                             while($d = mysqli_fetch_array($data)){
                                 if ($d > 0) {
                                 ?>
                                 <tr>
                                     <td class="row-table-data"><?php echo $no++; ?></td>
                                     <td class="row-table-data"><?php echo $d['nama_category']; ?></td>
-                                    <td class="row-table-data">
-                                        <a href="update.php?id_category=<?php echo $d['id_category']; ?>">EDIT</a>
-                                        <a href="delete.php?id_category=<?php echo $d['id_category']; ?>">HAPUS</a>
+                                    <td class="row-table-data" style="display: flex; align-items: center; justify-content: center;">
+                                        <a style="margin: 0 .2rem; background-color: yellow; color: black; display: flex; align-items: center; justify-content: center;" href="update.php?id_category=<?php echo $d['id_category']; ?>"><i data-feather="edit"></i> &nbsp; <label for="">EDIT</label></a>
+                                        <a style="margin: 0 .2rem; background-color: red; display: flex; align-items: center; justify-content: center;" href="delete.php?id_category=<?php echo $d['id_category']; ?>"><i data-feather="trash"></i> &nbsp; <label for="">HAPUS</label></a>
                                     </td>
                                 </tr>
                                 <?php 

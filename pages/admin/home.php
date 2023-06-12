@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="../../css/admin-css/layout.css">
+    <link rel="stylesheet" href="css/layout.css">
 
     <!-- Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +22,17 @@
     <title>Home Admin | Wall Movie</title>
 </head>
 <body>
+    <!-- Check Login Start -->
+    <?php
+        session_start();
+        if ($_SESSION['status'] != "login") {
+            header('location:../../auth/login/login.php?pesan=belum_login');
+        } else if ($_SESSION['status'] == "login" && $_SESSION['level'] == "user" || $_SESSION['level'] == "jurnal") {
+            header('location:../../index.php');
+        }
+    ?>
+    <!-- Check Login End -->
+    
     <!-- Loader Start -->
     <!-- Loader End -->
     
@@ -36,10 +47,14 @@
         <main class="sidebar-admin-content">
             <a class="sidebar-admin-logo" href="../../pages/admin/home.php">
                 <img src="../../img/logo.png" alt="Logo-Admin-Wall-Movie">
-                <span>Wall Movie</span>
+                <span style="display: flex; align-items: center;">
+                    <i data-feather="user"></i>
+                    &nbsp;
+                    <label for=""><?php echo $_SESSION['username']; ?></label>
+                </span>
             </a>
             <ul class="menu-admin">
-                <li><a href="home.php"><i data-feather="home"></i> <span>Dashboard</span></a></li>
+                <li><a style="background-color: #F0F2B6; color: #224B0C; font-weight: 600;" href="home.php"><i data-feather="home"></i> <span>Dashboard</span></a></li>
                 <li><a href="crud/film/film.php"><i data-feather="film"></i> <span>Film</span></a></li>
                 <li><a href="crud/category/category.php"><i data-feather="disc"></i> <span>Category</span></a></li>
                 <li><a href="crud/recommended/recommended.php"><i data-feather="check-square"></i> <span>Recommended</span></a></li>
@@ -49,14 +64,6 @@
         </main>
     </aside>
     <!-- Sidebar End -->
-
-    <!-- Cek Login -->
-    <?php
-        session_start();
-        if ($_SESSION['status']!="login") {
-            header('location:../../auth/login/login.php?pesan=belum_login');
-        }
-    ?>
 
     <!-- Section Start -->
     <section class="section-admin">
